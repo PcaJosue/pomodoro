@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="header">
+
+        <div class="header__title">
+            <img class="header__logo" src="../../../assets/images/pomodoro.png">
+            <label>Pomodoro</label>
+        </div>
+        <button (click)="openSettings()" mat-mini-fab color="primary" matTooltip="settings" aria-label="settings">
+            <mat-icon>settings</mat-icon>
+        </button>
+    </div>
+    <div class="content">
+        <div class="content__app">
+            <div class="content__app__buttons">
+                <div class="content__app__buttons__button " (click)="pomodoroState = PomodoroEnum.Pomodoro"
+                    [class]="pomodoroState === PomodoroEnum.Pomodoro ? 'pomodoro-active':'pomodoro'">
+                    Pomodoro
+                </div>
+                <div class="content__app__buttons__button " (click)="pomodoroState = PomodoroEnum.Break"
+                    [class]="pomodoroState === PomodoroEnum.Break ? 'break-active':'break'">
+                    Break
+                </div>
+                <div class="content__app__buttons__button " (click)="pomodoroState = PomodoroEnum.Long"
+                    [class]="pomodoroState === PomodoroEnum.Long ? 'long-active':'long'">
+                    Long Break
+                </div>
+            </div>
+            <div class="content_app__timer">
+                <app-timer [notificationEnabled]="(settings$ | async)?.alarm || false"
+                    (onResponse)="manageResponse($event)" *ngIf="pomodoroState === PomodoroEnum.Pomodoro"
+                    [min]="(settings$ | async)?.pomodoroMinutes || 45" [type]="PomodoroEnum.Pomodoro"
+                    [autoStart]="(settings$ | async)?.autoStartPomodoro || false">
+                </app-timer>
+                <app-timer [notificationEnabled]="(settings$ | async)?.alarm || false"
+                    (onResponse)="manageResponse($event)" *ngIf="pomodoroState === PomodoroEnum.Break"
+                    [min]="(settings$ | async)?.shortBreakMinutes || 5" [type]="PomodoroEnum.Break"
+                    [autoStart]="(settings$ | async)?.autoStartBreaks || false">
+                </app-timer>
+                <app-timer [notificationEnabled]="(settings$ | async)?.alarm || false"
+                    (onResponse)="manageResponse($event)" *ngIf="pomodoroState === PomodoroEnum.Long"
+                    [min]="(settings$ | async)?.longBreakMinutes || 15" [type]="PomodoroEnum.Long"
+                    [autoStart]="(settings$ | async)?.autoStartBreaks || false">
+                </app-timer>
+            </div>
+        </div>
+        <div class="content__tasks border">
+            <div class="content__tasks__title">
+                <label>Tasks</label>
+                <button (click)="addTask()" mat-mini-fab color="primary" matTooltip="Add" aria-label="tasks">
+                    <mat-icon>add_task</mat-icon>
+                </button>
+            </div>
+
+            <div class="content__tasks__list">
+                <ng-container *ngFor="let task of tasks$ |async ;let i =index ">
+                    <app-task-detail [index]="i" (onOpen)=" $event? openIndex=i:null " [task]="task"
+                        [opened]="openIndex === i">
+                    </app-task-detail>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+</div>

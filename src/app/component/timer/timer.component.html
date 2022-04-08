@@ -1,0 +1,16 @@
+<div class="container">
+
+    <div class="timer">
+        <mat-progress-spinner [diameter]="size" [color]="color" mode="determinate" [value]="progress">
+        </mat-progress-spinner>
+        <label class="timer__label">{{timer}}</label>
+    </div>
+    <div class="buttons">
+        <button mat-raised-button *ngIf="!running" (click)="play()" color="primary">Play</button>
+        <button mat-stroked-button *ngIf="running" (click)="pausePomodoro()" color="primary">Pause</button>
+        <button mat-stroked-button *ngIf="timeDifference > 0 ||  running" (click)='restart()'
+            color="warn">Restart</button>
+    </div>
+
+
+</div>

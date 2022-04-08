@@ -1,0 +1,57 @@
+<div mat-dialog-title class="task__title">
+    <div class="task__title-name">
+        <mat-icon (click)="removeTask()" color="warn" matTooltip="remove task">delete</mat-icon>
+        <h2>Task</h2>
+    </div>
+    <mat-icon mat-dialog-close>close</mat-icon>
+
+</div>
+
+<mat-dialog-content>
+    <form [formGroup]="taskForm" class="task">
+
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+            <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+
+    </form>
+    <mat-divider></mat-divider>
+
+    <div class="checklist">
+        <label>Checklist</label>
+        <button (click)="addStep()" mat-mini-fab color="primary" matTooltip="Add" aria-label="step">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <div *ngFor="let step of checkList; let i=index " class="steps">
+        <div class="step">
+            <mat-checkbox [(ngModel)]="step.done" [checked]="step.done" name="step"></mat-checkbox>
+            <mat-form-field appearance="legacy">
+                <mat-label>Label</mat-label>
+                <input matInput name="label" [(ngModel)]="step.label">
+                <mat-error>This field is required</mat-error>
+            </mat-form-field>
+
+            <mat-icon (click)="removeStep(i)" class="step__button" color="warn" matTooltip="Add">highlight_off
+            </mat-icon>
+        </div>
+    </div>
+
+</mat-dialog-content>
+
+<div mat-dialog-actions align="center">
+    <button type="button" mat-stroked-button color="warn" mat-dialog-close="">Cancel</button>
+    <button (click)="save()" mat-raised-button color="primary" cdkFocusInitial>Save</button>
+</div>

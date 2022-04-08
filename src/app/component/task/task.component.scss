@@ -1,0 +1,44 @@
+.task{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h2{margin: 0;}
+        mat-icon{ cursor: pointer;}
+        &-name{
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+    }
+}
+
+.checklist{
+    display: flex;
+    padding: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.steps{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.step{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    &__button{
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,61 @@
+<div class="title" mat-dialog-title>
+    <label>Settings</label>
+    <button mat-dialog-close mat-mini-fab color="primary" aria-label="Settings">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+
+<mat-dialog-content>
+
+    <form [formGroup]="form" class="settings__form">
+
+        <mat-checkbox color='primary' formControlName="alarm">
+            Alarm?
+        </mat-checkbox>
+
+        <mat-checkbox color='primary' formControlName="autoStartBreaks">
+            Auto start Breaks?
+        </mat-checkbox>
+
+        <mat-checkbox color='primary' formControlName="autoStartPomodoro">
+            Auto start Pomodoro?
+        </mat-checkbox>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Pomodoro Time</mat-label>
+            <input formControlName="pomodoroMinutes" type="number" min="0" matInput placeholder="45">
+            <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Short Break time</mat-label>
+            <input formControlName="shortBreakMinutes" type="number" min="0" matInput placeholder="45">
+            <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Long Break time</mat-label>
+            <input formControlName="longBreakMinutes" type="number" min="0" matInput placeholder="45">
+            <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="legacy">
+            <mat-label>How many intervals to Long Break?</mat-label>
+            <input formControlName="longBreakInterval" type="number" min="0" matInput placeholder="45">
+            <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+
+
+    </form>
+
+</mat-dialog-content>
+
+
+<div mat-dialog-actions align="center">
+    <button type="button" mat-stroked-button color="warn" mat-dialog-close="">Cancel</button>
+    <button (click)="save()" mat-raised-button color="primary" cdkFocusInitial>Save</button>
+</div>

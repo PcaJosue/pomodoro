@@ -1,0 +1,34 @@
+<mat-accordion>
+    <mat-expansion-panel [expanded]="opened" (opened)="send()">
+        <mat-expansion-panel-header [class]=" index % 2 === 0 ? 'color-panel':''">
+
+            <mat-panel-title class="title">
+
+                <b>{{task.name | uppercase}}</b>
+                <mat-icon (click)="editTask(); $event.stopPropagation()" class="step__button" color="primary"
+                    matTooltip="Add">
+                    edit
+                </mat-icon>
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+
+        <div>
+
+            <p><b>Description:</b></p>
+            <label>{{task.description}}</label>
+
+            <mat-divider></mat-divider>
+
+            <h4 style="margin-top:1rem" *ngIf="task.checklist?.length>0"><b>Checklist</b></h4>
+
+            <div *ngFor="let step of task.checklist;let i = index" fxLayout="column" fxLayoutGap="5px">
+                <mat-checkbox (change)="changeStep($event,i);" [checked]="step.done" name="step">{{step.label}}
+                </mat-checkbox>
+            </div>
+
+        </div>
+
+
+    </mat-expansion-panel>
+</mat-accordion>
