@@ -1,0 +1,87 @@
+@keyframes moveInBottom {
+    0% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+.info{
+    display: block;
+    gap: 1rem;
+    padding: 3rem;
+    position: relative;
+
+    &__title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+        label{font-size: 3em;}
+        img{width: 5em;}
+    }
+
+    &__section{
+        padding: 0 50px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        gap: 1rem;
+        img,p{width: 50%;}
+        img{ 
+            height: 100%;
+            object-fit: scale-down;
+        }
+        p{font-size: 2em; line-height: 6rem;}
+
+
+
+        
+        @media (max-width: 830px) {
+            flex-direction: column;
+            p{
+                font: 1.8em;
+                line-height: 2em;
+            }
+            img,p{width: 100%;}
+            height: 100%;
+            .label-whom{
+                order: 2;
+            }
+            .next,.back{
+                display: none;
+            }
+        }
+
+
+        
+    }
+    &__launch{
+        animation: moveInBottom .5s ease-out infinite;
+        animation-fill-mode: backwards;
+        position: fixed;
+        bottom: 1rem;
+        left: calc(50% - 10px);
+        @media (max-width: 830px) {
+            left: calc(50% - 80px);
+        }
+    }
+}
+
+.next{
+    position: absolute;
+    top: 50%;
+    right: 5px;
+}
+
+.back{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+}
+
