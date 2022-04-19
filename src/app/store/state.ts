@@ -41,6 +41,7 @@ export class PomodoroState {
     onSavePomodoro(ctx: StateContext<Pomodoro>, action: SavePomodoro) {
         const state = ctx.getState();
         ctx.setState({
+            ...state,
             ...action.info
         });
 
