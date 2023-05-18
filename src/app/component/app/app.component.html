@@ -25,10 +25,10 @@
                     Long Break
                 </div>
             </div>
-            <div class="content_app__timer">
+            <div class="content_app__timer" *ngIf="showTimer">
                 <app-timer [notificationEnabled]="(settings$ | async)?.alarm || false"
                     (onResponse)="manageResponse($event)" *ngIf="pomodoroState === PomodoroEnum.Pomodoro"
-                    [min]="(settings$ | async)?.pomodoroMinutes || 45" [type]="PomodoroEnum.Pomodoro"
+                    [min]="(settings$ | async)?.pomodoroMinutes || 55" [type]="PomodoroEnum.Pomodoro"
                     [autoStart]="(settings$ | async)?.autoStartPomodoro || false">
                 </app-timer>
                 <app-timer [notificationEnabled]="(settings$ | async)?.alarm || false"
@@ -52,7 +52,7 @@
             </div>
 
             <div class="content__tasks__list">
-                <ng-container *ngFor="let task of tasks$ |async ;let i =index ">
+                <ng-container *ngFor="let task of (tasks$ |async) ;let i =index ">
                     <app-task-detail [index]="i" (onOpen)=" $event? openIndex=i:null " [task]="task"
                         [opened]="openIndex === i">
                     </app-task-detail>

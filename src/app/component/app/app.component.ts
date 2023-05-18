@@ -15,9 +15,10 @@ import { TaskComponent } from '../task/task.component';
 export class AplicationComponent implements OnInit {
 
   @Select(PomodoroState.settings) settings$: Observable<Pomodoro>;
-  @Select(PomodoroState.getTasks) tasks$: Observable<Pomodoro>;
+  @Select(PomodoroState.getTasks) tasks$: Observable<any>;
 
   public openIndex: number = 0;
+  public showTimer:boolean=true;
   public pomodoroState: string = PomodoroEnum.Pomodoro;
   public PomodoroEnum = PomodoroEnum;
   public settings: any = {
@@ -30,7 +31,9 @@ export class AplicationComponent implements OnInit {
 
   ngOnInit() {
     this.settings$.subscribe(settings => {
-      this.settings.interval = settings.longBreakInterval
+      this.settings = settings
+      this.showTimer = false;
+      setTimeout(() => this.showTimer=true, 100);
     })
   }
 

@@ -130,7 +130,7 @@ export class TimerComponent implements OnInit {
 
   playNotification() {
     if (this.notificationEnabled) {
-      const audio: HTMLAudioElement = new Audio('../../../assets/sounds/serious-strike-533.ogg')
+      const audio: HTMLAudioElement = new Audio('assets/sounds/serious-strike-533.ogg')
       audio.play();
     }
 
